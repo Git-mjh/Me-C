@@ -1,0 +1,13 @@
+//我的第一天代码#c
+#include<stdio.h>
+int main()
+{
+	int num = 3;
+	printf("%d\n", num);
+	num = 4;
+	printf("%d\n", num);
+
+
+	return 0;
+}
+//循序渐进，每日向上！！
