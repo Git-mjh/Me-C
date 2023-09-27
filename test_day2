@@ -1,0 +1,51 @@
+//Day2:
+//1、分支语句if、else:实际用法
+int main()
+{
+	int age = 100;
+	if (age < 18)
+		printf("未成年\n");
+	else if(age>=10 and age<28)       
+	{
+		printf("青年\n");
+	}
+	else if (age >= 28 and age < 60)
+	{
+		printf("成熟期\n");
+	}
+	else
+	{
+		printf("退休期\n");
+	}
+	return 0;
+}
+
+//2、注意等号（==）和赋值（=）的区别
+int main()
+{
+	int num = 4;
+	if (num == 5)//注意==是相等，=是赋值；可以写5==num，可以看出错误
+		printf("正确\n");
+	return 0;
+ }
+
+
+//小练习
+int main()
+{
+	int a = 3;
+	if (a % 2 == 0)
+		printf("%d是偶数，不是奇数\n");
+	else
+	{
+		printf("%d是奇数\n");
+	}
+	/*int i = 1;
+	for (i = 1; i <= 100; i++)
+	{
+		if (i % 2 != 0)
+			printf("%d\n",i);
+	}
+	*/
+	return 0;
+}
