@@ -1,0 +1,66 @@
+//一个小小的猜数字游戏
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+//猜数字游戏*****
+//1.电脑生成一个随机数
+//2.猜数字
+void menu()
+{
+	printf("********************************************\n");
+	printf("******      1.play     0.exit        *******\n");
+	printf("********************************************\n");
+}
+void game()
+{
+	//rand:生成一个随机数,头文件为<stdlib.h>,调用之前用srand设置
+	int ret = 0;
+	int gess = 0;//接收猜的数字
+	ret = rand()%100+1;//1-100
+	//printf("%d\n", ret);
+	//猜数字
+	while (1)
+	{
+		printf("请猜数字：");
+		scanf("%d",&gess);
+		if (gess>ret)
+		{
+			printf("猜大了！\n");
+		}
+		else if (gess<ret)
+		{
+			printf("猜小了！\n");
+		}
+		else
+		{
+			printf("恭喜您，猜对了\n");
+			break;
+		}
+	}
+	
+}
+int main()
+{
+	int input = 0;
+	srand((unsigned int)time(NULL));  //时间戳 距离1970年1月1日00：00的秒数，用time_t
+	do
+	{
+		menu();
+		printf("请选择->:");
+		scanf("%d", &input);
+		switch (input)
+		{
+		case 1:
+			game();
+			break;
+		case 0:
+			printf("退出游戏\n");
+			break;
+		default:
+			printf("请重新输入\n");
+			break;
+		}
+
+	} while (input);
+	return 0;
+}
