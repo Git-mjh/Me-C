@@ -1,0 +1,104 @@
+函数的两个例子
+#include<stdio.h>
+#include<string.h>
+
+//strcpy-字符串拷贝，用法如下：
+int main()
+{
+	char arr1[] = "bit";
+	char arr2[20] = "#########";    //若源头的数据长，会溢出
+	strcpy(arr2, arr1);//将数组1拷贝到数组2，目的地数组被覆盖
+	printf("%s\n", arr2);
+	return 0;
+}
+
+//memset-->memory-内存  set-设置
+int main()
+{
+	char arr[] = "hello world";
+	memset(arr, '*', 5);//将前5个字符替换成*
+	printf("%s\n", arr);
+	return 0;
+}
+
+
+//函数的使用小例子：比较大小
+int get_max(int x, int y)
+{
+	if (x > y)
+		return x;
+	else
+		return y;
+}
+
+int main()
+{
+	int a = 10;
+	int b = 20;
+	int max = get_max(a, b);
+	printf("max=%d\n", max);
+	return 0;
+}
+
+//函数的使用小例子：交换两数
+void Swap(int *pa, int *pb)
+{
+	int tmp = 0;
+	tmp= *pa;
+	*pa = *pb;
+	*pb = tmp;
+}
+
+int main()
+{
+	int a = 10;
+	int b = 20;
+	Swap(&a, &b);//不能直接交换，因为地址不同，用指针的方法取地址
+	printf("a=%d b=%d\n",a,b);
+	return 0;
+}
+
+小练习
+//1.判断素数（100-200之间）
+
+//是素数返回1，不是返回0
+int is_prime(int n)
+{
+	int m = 0;
+	for(m=2;m<n;m++)
+	{
+		if (n % m == 0)
+			return 0;
+	}
+	return 1;
+}
+
+int main()
+{
+	int i = 0;
+	for (i = 100; i <= 200; i++)
+	{
+		if (is_prime(i) == 1)
+			printf("%d ", i);
+	}
+	return 0;
+}
+
+
+
+void Add(int* p)
+{
+	(*p)++;//*优先级比+低
+}
+int main()
+{
+	int num = 0;
+	//调用函数，使得num每次增加1
+	Add(&num);
+	printf("num=%d\n",num);//1
+	Add(&num);
+	printf("num=%d\n",num);//2
+	Add(&num);
+	printf("num=%d\n",num);//3
+	return 0;
+}
