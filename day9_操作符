@@ -1,0 +1,136 @@
+#include<stdio.h>
+////操作符
+
+//右移操作符
+//1.算数右移（基本这样）
+//右边丢弃，左边补原符号位
+//2逻辑右移
+//右边丢弃，左边补0
+int main()
+{
+	int a = -1;
+	int b=a >> 1;//右移操作符（二进制）÷2效果
+	printf("%d", b);
+	return 0;
+}
+//左移操作符
+int main()
+{
+	int a = 5;
+	int b = a << 1;//左移操作符（二进制）x2效果
+	printf("%d", b);
+	return 0;
+}
+
+//与 或 异或输出二进制
+int main()
+{
+	int a = 3;
+	int b = 5;
+	int c = a & b;//按位与：1
+	int d = a | b;
+	int e = a ^ b;
+	printf("%d\n", c);
+	printf("%d\n", d);
+	printf("%d\n", e);
+	printf("%d\n", ~a);//按位取反
+	return 0;
+}
+
+int main()
+{
+	int a = 11;
+	int b = a | (1 << 2);
+	printf("%d\n", b);
+	int c = b & (~(1 << 2));
+	printf("%d\n", c);
+	return 0;
+}
+
+int main()
+{
+	int a = (int)3.14; //强制类型转换
+	return 0;
+}
+
+
+int main()
+{
+	int i = 0,a = 0,b = 2,c = 3,d = 4;
+	i = a++ && ++b && d++;//a++先用再加，后两个不起作用
+	//= a++++bld++;
+	printf("a =%d\n b=%d\n c=%d\n d=%d\n",a, b,c, d);
+		return 0;
+}
+
+int main()
+{
+	int a=0, b;
+	b = (a > 5 ? 3 : -3);//三目操作符，a>5为真，b=3，否则b=-3
+	printf("%d\n", b);
+	return 0;
+}
+
+//逗号表达式，就是用逗号隔开的多个表达式。逗号表达式，从左向右依次执行。整个表达式的结果是最后一个表达式的结果。
+int main()
+{
+	int a = 1, b=2;
+	int c = (a > b, a = b + 10, a, b = a + 1);
+	printf("%d\n", c);
+	return 0;
+}
+
+//函数调用
+int get_max(int x, int y)
+{
+	return x > y ? x : y;
+}
+int main()
+{
+	int a = 10, b = 20;
+	int max = get_max(a, b);
+	printf("%d\n", max);
+	return 0;
+}
+
+
+//箭头   结构体指针操作符
+struct Stu
+{
+	char name[20];
+	int age;
+	char id[20];
+ };
+
+int main()
+{
+	struct Stu s1 = { "张三",20,"20238208" };
+	printf("%d\n", s1.age);
+	printf("%s\n", s1.name);
+	printf("%s\n", s1.id);
+
+	struct Stu* p = &s1;
+	printf("%s\n", p->name);//####
+	return 0;
+}
+
+//隐式类型转换
+int main()
+{
+	char a = 3;
+	char b = 127;
+	char c = a + b;
+	printf("%d\n",c);//整形提升，将一个字节的char类型提升到4字节的int
+	return 0;
+}
+
+//优先级、结合性
+int main()
+{
+	int a =10;
+	int b = 20;
+	int c =b+a*3;
+	int d = a + b + c;//L->R
+	printf("%d\n", c);
+	return 0;
+}
