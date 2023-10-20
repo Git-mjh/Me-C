@@ -1,0 +1,88 @@
+//数组参数，指针参数
+void test(int arr[3][5])
+{}
+void test1(int arr[][5])//列不能省略
+{}
+void test2(int (*arr)[5])//二维首元素地址表示第一行
+{}
+int main()
+{
+	int arr[3][5] = {0};
+	test(arr);//二维数组传参
+	return 0;
+}
+void print(int*p,int sz)//指针传，指针收
+{\
+}
+int main()
+{
+	int arr[5] = { 0 };
+	int* p = arr;
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	print(p,sz);
+	return 0;
+}
+
+//函数指针--指向函数的指针
+int Add(int x, int y)
+{
+	int z = 0;
+	z = x + y;
+	return z;
+}
+int main()
+{
+	/*int a = 10;
+	int b = 20;*/
+	//Add(a, b);
+	//printf("% p\n", Add(a, b));
+	int (*pa)(int, int) = Add;
+	printf("%d\n", (*pa)(2, 3));
+	printf("%d\n", (pa)(2, 3));//两种结果都相同
+	return 0;
+}
+
+//函数指针数组（用途：转移表）
+int Add(int x, int y)
+{
+	return x + y;
+}
+int Sub(int x, int y)
+{
+	return x - y;
+}
+int Mul(int x, int y)
+{
+	return x * y;
+}
+int Div(int x, int y)
+{
+	return x / y;
+}
+int main()
+{
+	int* arr[5];//指针数组
+	int(*pa[4])(int, int) = { Add,Sub,Mul,Div };
+	int i;
+	for ( i = 0; i < 4; i++)
+	{
+		printf("%d\n", pa[i](6,3));
+	}
+	return 0;
+}
+
+//char(*pf)(char*, const char*)=my_strcpy;
+//char(*pfArr[4])(char*,const char*)={}
+
+//指向函数指针数组的指针
+int main()
+{
+	int arr[10] = { 0 };
+	int(*p)[10] = &arr;//取出数组的地址
+	int(*pfArr[4])(int,int);//pfArr是一个数组-函数指针的数组
+	int(*(*ppfArr)[4])(int,int) = &pfArr;
+	//ppfArr是一个数组指针，指针指向的数组有4个元素
+	//指向的数组的每个元素的类型是一个函数指针 int(*)(int，int)
+	
+	return 0;
+}
