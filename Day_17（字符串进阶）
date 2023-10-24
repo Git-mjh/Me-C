@@ -1,0 +1,137 @@
+#include<stdio.h>
+#include<string.h>
+
+//strlen,求字符串长度  使用的size_t无符号数 
+int main()
+{
+	int len = strlen("abcdef");
+	printf("%d\n", len);
+	return 0;
+}
+
+//1.长度不受限的字符串函数，一直找\0
+//strcpy（）,字符拷贝(目的地，源头）
+int main()
+{
+	char a1[] = "asdfghjk";
+	char a2[] = "bit";
+	strcpy(a1, a2);
+	printf("%s\n", a1);
+	return 0;
+}
+
+//strcat（）,字符串追加(目的地，源头）
+int main()
+{
+	char a1[20] = "hello ";
+	char a2[20] = "world";
+	strcat(a1, a2);//目的地足够大，源头包含\0
+	printf("%s\n", a1);
+	return 0;
+}
+
+//strcmp（）,字符串比较
+int main()
+{
+	const char* p1 = "csdfghjk";
+	const char* p2 = "bitnhg";
+	int ret=strcmp(p1, p2);
+	printf("%d\n",ret);
+	return 0;
+}
+
+2.长度受限的字符串函数
+//strncpy（）,字符拷贝(目的地，源头,拷贝长度）
+int main()
+{
+	char a1[] = "asdfghjk";
+	char a2[] = "bitqsdxscds";
+	strncpy(a1, a2,4);
+	printf("%s\n", a1);
+	return 0;
+}
+
+//strncat（）,字符串追加(目的地，源头,追加个数）
+int main()
+{
+	char a1[20] = "hello ";
+	char a2[20] = "world";
+	strncat(a1, a2,3);//目的地足够大，源头包含\0
+	printf("%s\n", a1);
+	return 0;
+}
+
+//strncmp（）,字符串比较
+int main()
+{
+	const char* p1 = "cadfghjk";
+	const char* p2 = "cadnhg";
+	int ret=strncmp(p1, p2,3);
+	printf("%d\n",ret);
+	return 0;
+}
+
+//strstr（）,查找字符串
+int main()
+{
+	const char* p1 = "sscadfghjk";
+	const char* p2 = "cad";
+	const char* ret = strstr(p1, p2);
+	if (ret==NULL)
+	{
+		printf("子串不存在\n");
+	}
+	else
+	{
+		printf("%s\n", ret);
+	}
+	return 0;
+}
+
+NULL-空指针；Null--/0'
+
+//strtok 拿出分割段
+int main()
+{
+	char p1[] = "cad@fgh.j@k";
+    const char* p2 = "@.";
+	char buf[1024] = {};
+	char* ret = NULL;
+	for (ret = strtok(p1, p2); ret != NULL; ret=strtok(NULL,p2))
+	{
+		printf("%s\n", ret);
+	}
+	return 0;
+}
+
+//strerror（）,错误报告信息函数
+int main()
+{
+	// char* a1 = strerror(4);
+	// //0--No error
+	// //1--Operation not permitted
+	// //2--No such file or directory.......
+	//printf("%s\n", a1);
+
+	FILE* pf = fopen("test.txt", "r");
+	if (pf == NULL)
+	{
+		printf("% s\n", strerror(errno));//库函数
+	}
+	else
+	{
+		printf("open file success\n");
+	}
+	return 0;
+}
+
+
+//strncmp（）,字符串比较
+int main()
+{
+	const char* p1 = "cadfghjk";
+	const char* p2 = "cadnhg";
+	int ret=strncmp(p1, p2,3);
+	printf("%d\n",ret);
+	return 0;
+}
