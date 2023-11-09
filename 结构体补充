@@ -1,0 +1,132 @@
+struct tag  
+{
+	char name;
+	char tle;
+	char sex;
+	int age;
+}/*s4, s5*/;//全局变量
+//struct tag s3;//全局变量
+int main()
+{
+	
+	struct tag s1 = {'mjh',158852693,'男',15};//局部变量
+	//struct tag s2;
+	printf("%c %c %c %d", s1.name, s1.tle, s1.sex, s1.age);
+	return 0;
+}
+
+//自引用结构体
+//在设计结构体的时候，我们既要满足对齐，又要节省空间，如何做到
+//占用空间小的成员尽量集中在一起  char<int<double
+//#pragma pack(数字）--设置默认对齐数    #pragma pack(）--取消设置
+#include<stddef.h>
+struct s1
+{
+	char c;
+	int i;
+	double d;
+};
+int main()
+{
+	printf("%d\n", offsetof(struct s1, c));//coffsetof 偏移量(宏）
+	printf("%d\n", offsetof(struct s1, i));
+	printf("%d\n", offsetof(struct s1, d));
+	return 0;
+}
+
+struct s1
+{
+	char c;
+	int i;
+	double d;
+};
+void Init(struct s1* ps)
+{
+	ps->c = 'w';
+	ps->i = 668;
+	ps->d = 30.14;
+}
+int main()
+{
+	struct s1 s = { 0 };
+	Init(&s);//传地址
+	printf("%c %d %lf\n", s.c, s.i, s.d);
+	return 0;
+}
+
+//位段
+//位段的声明和结构是类似的，有两个不同
+//1位段的成员必须是int、unsigned int 或signed int。
+//2位段的成员名后边有一个冒号和一个数字
+struct s
+{
+	int a : 2;//2代表需要2个比特位
+	int b : 10;
+	int c : 30;
+};
+int main()
+{
+	struct s s;
+	printf("%d\n", sizeof(s));
+	return 0;
+}
+
+struct s
+{
+	char a : 3;//2代表需要2个比特位
+	char b : 4;
+	char c : 5;
+	char d : 4;
+};
+int main()
+{
+	struct s s = { 0 };
+
+	s.a = 10;
+	s.b = 20;
+	s.c = 3;
+	s.d = 4;
+	printf("%d\n", sizeof(s));
+	return 0;
+}
+
+//枚举
+//1.增加代码的可读性和可维护性
+//2和define定义的标识符比较枚举有类型检查，更加严谨
+//3.防止了命名污染(封装)
+//4便于调试
+//5.使用方便，一次可以定义多个常量
+enum sex
+{
+    //枚举的可能取值
+	male,
+    female,
+    secret
+};
+enum color
+{
+    //枚举的可能取值
+    red,//0
+    yellow,//1
+    blue//2
+};
+int main()
+{
+    enum sex s = male;
+    enum color d = blue;
+    return 0;
+}
+
+//联合（共用体）---共用同一块空间
+//大小至少是最大的元素的大小；要对齐到最大对齐数的整数倍
+union un
+{
+    char c;
+    int i;
+};
+int main()
+{
+    union un u ;
+    printf("%d\n",sizeof(u));
+    return 0;
+}
